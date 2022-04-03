@@ -1,4 +1,4 @@
-package com.nikhilnishad.discoveryService;
+package com.nikhilnishad.photoApp.discoveryService;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
