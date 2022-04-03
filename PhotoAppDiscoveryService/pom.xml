@@ -8,7 +8,7 @@
 		<version>2.6.6</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.nikhilnishad</groupId>
+	<groupId>com.nikhilnishad.photoApp</groupId>
 	<artifactId>discoveryService</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>PhotoAppDiscoveryService</name>
