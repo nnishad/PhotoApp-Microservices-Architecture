@@ -36,9 +36,8 @@ public class WebSecurity extends WebSecurityConfigurerAdapter{
 	}
 
 	private AuthFilter getAuthenticationFilter() throws Exception {
-		// TODO Auto-generated method stub
-		
 		AuthFilter authFilter=new AuthFilter(userService,env,authenticationManager());
+		authFilter.setFilterProcessesUrl(env.getProperty("login.url.path"));
 		return authFilter;
 	}
 	@Override
