@@ -15,35 +15,38 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.nikhilnishad.photoApp.userService.model.CreateUserRequestModel;
 import com.nikhilnishad.photoApp.userService.model.CreateUserResponseModel;
+import com.nikhilnishad.photoApp.userService.model.LoginRequestModel;
 import com.nikhilnishad.photoApp.userService.service.UsersService;
 import com.nikhilnishad.photoApp.userService.shared.UserDto;
 
 @RestController
 @RequestMapping("/users")
 public class UsersController {
-	
+
 	@Autowired
 	private Environment env;
-	
+
 	@Autowired
 	UsersService userService;
-	
+
 	@GetMapping("/status")
 	public String status() {
-		return "running on port "+env.getProperty("local.server.port");
+		return "running on port " + env.getProperty("local.server.port");
 	}
-	
-	
-	@PostMapping(consumes = {MediaType.APPLICATION_JSON_VALUE,MediaType.APPLICATION_XML_VALUE},produces= {MediaType.APPLICATION_JSON_VALUE,MediaType.APPLICATION_XML_VALUE})
+
+	@PostMapping(consumes = { MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE }, produces = {
+			MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE })
 	public ResponseEntity<CreateUserResponseModel> createUser(@RequestBody CreateUserRequestModel userDetails) {
-		
-		ModelMapper modelMapper=new ModelMapper();
+
+		ModelMapper modelMapper = new ModelMapper();
 		modelMapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
-		
-		UserDto userDto=modelMapper.map(userDetails, UserDto.class);
-		UserDto createdUser= userService.createUser(userDto);
-		CreateUserResponseModel retunValue=modelMapper.map(createdUser, CreateUserResponseModel.class);
+
+		UserDto userDto = modelMapper.map(userDetails, UserDto.class);
+		UserDto createdUser = userService.createUser(userDto);
+		CreateUserResponseModel retunValue = modelMapper.map(createdUser, CreateUserResponseModel.class);
 		return ResponseEntity.status(HttpStatus.CREATED).body(retunValue);
 	}
+	
+	
 
 }
