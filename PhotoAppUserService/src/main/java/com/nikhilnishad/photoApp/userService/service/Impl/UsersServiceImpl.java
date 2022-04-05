@@ -4,7 +4,6 @@ import java.util.UUID;
 
 import org.modelmapper.ModelMapper;
 import org.modelmapper.convention.MatchingStrategies;
-import org.modelmapper.spi.MatchingStrategy;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -27,8 +26,8 @@ public class UsersServiceImpl implements UsersService {
 		modelMapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
 		UserEntity userEntity=modelMapper.map(userDetails, UserEntity.class);
 		userEntity.setEncryptedPassword("test");
-		userRepository.save(userEntity);
-		return null;
+		UserDto createdUser=modelMapper.map(userRepository.save(userEntity),UserDto.class);
+		return createdUser;
 	}
 
 }
